@@ -6,7 +6,7 @@ from langchain_community.vectorstores import FAISS
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.chat_models import ChatOpenAI
 from langchain.chains import RetrievalQA
-
+import os
 # Extract text from uploaded PDFs
 def get_pdf_text(docfiles):
     text = ""
@@ -84,7 +84,7 @@ def handle_input_change():
     st.session_state.pending_input = st.session_state.user_query
 # Main Streamlit app
 def main():
-    load_dotenv()  # Load environment variables (for OpenAI API key)
+    OPENAI_API_KEY=os.environ.get("OPENAI_API_KEY")  # Load environment variables (for OpenAI API key)
 
     st.set_page_config(page_title="ChatPDF", page_icon=":books:", layout="centered")
     st.title("RAG ChatBot Demo")
